@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Deck {
+public class CardFactory {
     ArrayList<Card> cards = new ArrayList<>();
     Card r0 = new Card(Type.RED, 0);
     Card r1 = new Card(Type.RED, 1);
