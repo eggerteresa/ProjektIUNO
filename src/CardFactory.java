@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
 public class CardFactory {
+    //4 For schleifen, um Karten zu erzeugen, für Spieler ein Interface, eine Klasse für Ablegestapel,
+    //eine Klassse für Abhebestapel
+
+
     ArrayList<Card> cards = new ArrayList<>();
     Card r0 = new Card(Type.RED, 0);
     Card r1 = new Card(Type.RED, 1);
