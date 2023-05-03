@@ -9,6 +9,13 @@ public class Spielermanagement {
 
     private ArrayList<Spieler> spielergruppe = new ArrayList<>();
 
+    public ArrayList<Spieler> getSpielergruppe() {
+        return spielergruppe;
+    }
+
+    public void setSpielergruppe(ArrayList<Spieler> spielergruppe) {
+        this.spielergruppe = spielergruppe;
+    }
 
     //    public Spielermanagement() {
 //        this.spielergruppe = new ArrayList<>();
@@ -49,6 +56,24 @@ public class Spielermanagement {
         }
 
     }
+
+
+//    public void distributeCards() {
+//
+//        for (int i = 0; i<spielergruppe.size(); i++){
+//        for (int j = 0; j<7; j++) {
+//
+//
+//
+//
+//
+//
+//        }
+//
+//        }
+//
+//
+//    }
 
     // Collections.shuffle(unsere Collection);
 

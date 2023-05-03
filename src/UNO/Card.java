@@ -1,3 +1,7 @@
+package UNO;
+
+import UNO.Type;
+
 public class Card {
     private Type type;
     private int number;
@@ -7,10 +11,8 @@ public class Card {
     private String name;
 
 
-    public Card(Type type, int number, int value, String name) {
+    public Card(Type type, String name) {
         this.type = type;
-        this.number = number;
-        this.value = value;
         this.name = name;
     }
 
@@ -23,6 +25,21 @@ public class Card {
     public Card(Type type, int number) {
         this.type = type;
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        if (name == null) {
+            return "UNO.Card{" +
+                    "type=" + type +
+                    ", number=" + number +
+                    '\'' +
+                    '}';
+        } else {
+            return "UNO.Card{" + "type=" + type + ", name='" + name +
+                    '\'' +
+                    '}';
+        }
     }
 
     public Type getColor() {
@@ -48,4 +65,5 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
+//
 }

@@ -1,15 +1,16 @@
 package UNO;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Spieler implements SpielerMethoden{
+public class Spieler implements SpielerMethoden {
 
     protected String name;
-protected int id;
-protected int points;
-protected static int counter =0;
+    protected int id;
+    protected int points;
+    protected static int counter = 0;
+    protected ArrayList<Card> kartenprospieler = new ArrayList<>();
 
-    public Spieler( String name) {
+    public Spieler(String name) {
         this.name = name;
         this.id = ++counter;
         this.points = 0;
@@ -21,6 +22,7 @@ protected static int counter =0;
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", points=" + points +
+                ", kartenprospieler=" + kartenprospieler +
                 '}';
     }
 
@@ -48,7 +50,16 @@ protected static int counter =0;
         this.points = points;
     }
 
+    public ArrayList<Card> getKartenprospieler() {
+        return kartenprospieler;
+    }
 
+    public void setKartenprospieler(ArrayList<Card> kartenprospieler) {
+        this.kartenprospieler = kartenprospieler;
 
-
+    }
+    public void karteHinzufügen(Card card){
+        kartenprospieler.add(card);
+    }
+    //Methode Karten nehmen
 }
