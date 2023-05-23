@@ -12,21 +12,39 @@ public class Game {
         System.out.println(spielermanagement);
 
 
-        CardDeck cd = new CardDeck();
-        cd.createredcards(Type.RED);
-        cd.createbluecards(Type.BLUE);
-        cd.creategreencards(Type.GREEN);
-        cd.createyellow(Type.YELLOW);
-        cd.createActionCards(Type.BLACK);
-        System.out.println(cd.cards);
-        System.out.println(cd.cards.size());
+        CardDeck abhebenstapel = new CardDeck();
+        abhebenstapel.createcards(Type.RED);
+        abhebenstapel.createcards(Type.YELLOW);
+        abhebenstapel.createcards(Type.BLUE);
+        abhebenstapel.createcards(Type.GREEN);
+
+        abhebenstapel.createActionCards(Type.BLACK);
+        System.out.println(abhebenstapel.cards);
+        System.out.println(abhebenstapel.cards.size());
+
 
         //Karten mischen
-        cd.shuffleCards();
-        System.out.println(cd.cards);
+        abhebenstapel.shuffleCards();
+        System.out.println(abhebenstapel.cards);
 
-        distributeCards(spielermanagement, cd);
+        distributeCards(spielermanagement, abhebenstapel);
+        AblegeStapel a = new AblegeStapel();
 
+        System.out.println(abhebenstapel.cards);
+        for (int i = 0; i < 10; i++) {
+            a.addCard(abhebenstapel.dealCard());
+            System.out.println(a.lastCardShow());
+        }
+
+        System.out.println(a.ablegeStapelcards);
+
+
+
+
+        // firstCard(abhebenstapel);
+
+
+        System.out.println(abhebenstapel.cards.size());
 
     }
 
@@ -37,14 +55,15 @@ public class Game {
                 Card c = cd.dealCard();
                 spieler.karteHinzufügen(c);
 
-
             }
-
+            System.out.println(spieler);
         }
-
-
     }
 
+    public static void firstCard(CardDeck abhebenstapel) {
 
+        Card c1 = abhebenstapel.dealCard();
+        System.out.println(c1);
+    }
 }
 
