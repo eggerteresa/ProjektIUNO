@@ -1,10 +1,12 @@
 package UNO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Game {
     public static void main(String[] args) {
+        int aktuellerSpieler = 0;
         Spielermanagement spielermanagement = new Spielermanagement();
 
         spielermanagement.spielerfestlegen();
@@ -12,33 +14,44 @@ public class Game {
         System.out.println(spielermanagement);
 
 
-        CardDeck abhebenstapel = new CardDeck();
-        abhebenstapel.createcards(Type.RED);
-        abhebenstapel.createcards(Type.YELLOW);
-        abhebenstapel.createcards(Type.BLUE);
-        abhebenstapel.createcards(Type.GREEN);
+        CardDeck abhebestapel = new CardDeck();
+        abhebestapel.createcards(Type.RED);
+        abhebestapel.createcards(Type.YELLOW);
+        abhebestapel.createcards(Type.BLUE);
+        abhebestapel.createcards(Type.GREEN);
 
-        abhebenstapel.createActionCards(Type.BLACK);
-        System.out.println(abhebenstapel.cards);
-        System.out.println(abhebenstapel.cards.size());
+        abhebestapel.createActionCards(Type.BLACK);
+        System.out.println(abhebestapel.cards);
+        System.out.println(abhebestapel.cards.size());
 
         //Karten mischen
-        abhebenstapel.shuffleCards();
-        System.out.println(abhebenstapel.cards);
+        abhebestapel.shuffleCards();
+        System.out.println(abhebestapel.cards);
 
-        distributeCards(spielermanagement, abhebenstapel);
-        AblegeStapel a = new AblegeStapel();
+        distributeCards(spielermanagement, abhebestapel);
+        AblegeStapel ablegeStapel = new AblegeStapel();
 
-        System.out.println(abhebenstapel.cards);
+        System.out.println(abhebestapel.cards);
 
-        a.addCard(abhebenstapel.dealCard());
-        System.out.println(a.lastCardShow());
+        ablegeStapel.addCard(abhebestapel.dealCard());
+        System.out.println(ablegeStapel.lastCardShow());
 
-        System.out.println(a.ablegeStapelcards);
+       //System.out.println(ablegeStapel.ablegeStapelcards);
 
-        firstCard(abhebenstapel);
+       // firstCard(abhebestapel);
 
-        System.out.println(abhebenstapel.cards.size());
+        System.out.println(abhebestapel.cards.size());
+
+        System.out.println(spielermanagement.getSpielergruppe());
+        reihenfolgeFestlegen(spielermanagement);
+
+        spielerReihenfolgeAnzeigen(spielermanagement);
+        aktuellerSpieler = 1;
+
+
+        Spielverlauf spielverlauf = new Spielverlauf();
+        spielverlauf.rundeSpielen(aktuellerSpieler,ablegeStapel,abhebestapel,spielermanagement);
+
 
     }
 
@@ -59,5 +72,19 @@ public class Game {
         Card c1 = abhebenstapel.dealCard();
         System.out.println(c1);
     }
+    public static void reihenfolgeFestlegen(Spielermanagement sm){
+        Collections.shuffle(sm.getSpielergruppe());
+        System.out.println("Spielerreihenfolge wurde festgelegt.");
+    }
+    public static void spielerReihenfolgeAnzeigen(Spielermanagement sm){
+        int counter = 1;
+        for(Spieler s : sm.getSpielergruppe()){
+            System.out.println("Spieler "+ counter++ +": "+  s.getName());
+            s.setId(counter-1);
+
+        }
+    }
+
+
 }
 

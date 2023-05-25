@@ -13,6 +13,11 @@ public class Spielermanagement {
         return spielergruppe;
     }
 
+    public Spieler getPlayerByIndex(int index) {
+        return spielergruppe.get(index - 1);
+    }
+
+
     public void setSpielergruppe(ArrayList<Spieler> spielergruppe) {
         this.spielergruppe = spielergruppe;
     }

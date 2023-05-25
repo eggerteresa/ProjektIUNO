@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Spieler implements SpielerMethoden {
 
     protected String name;
-    protected int id;
+    protected int id; // wirklich notwendig?
     protected int points;
     protected static int counter = 0;
     protected ArrayList<Card> kartenprospieler = new ArrayList<>();
