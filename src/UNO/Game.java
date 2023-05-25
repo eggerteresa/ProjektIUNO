@@ -22,7 +22,6 @@ public class Game {
         System.out.println(abhebenstapel.cards);
         System.out.println(abhebenstapel.cards.size());
 
-
         //Karten mischen
         abhebenstapel.shuffleCards();
         System.out.println(abhebenstapel.cards);
@@ -31,18 +30,13 @@ public class Game {
         AblegeStapel a = new AblegeStapel();
 
         System.out.println(abhebenstapel.cards);
-        for (int i = 0; i < 10; i++) {
-            a.addCard(abhebenstapel.dealCard());
-            System.out.println(a.lastCardShow());
-        }
+
+        a.addCard(abhebenstapel.dealCard());
+        System.out.println(a.lastCardShow());
 
         System.out.println(a.ablegeStapelcards);
 
-
-
-
-        // firstCard(abhebenstapel);
-
+        firstCard(abhebenstapel);
 
         System.out.println(abhebenstapel.cards.size());
 
