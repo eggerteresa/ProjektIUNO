@@ -8,13 +8,7 @@ public class Card {
 
     private int value;
 
-    private String name;
 
-
-    public Card(Type type, String name) {
-        this.type = type;
-        this.name = name;
-    }
 
     public Card(Type type, int number, int value) {
         this.type = type;
@@ -22,24 +16,14 @@ public class Card {
         this.value = value;
     }
 
-    public Card(Type type, int number) {
-        this.type = type;
-        this.number = number;
-    }
 
     @Override
     public String toString() {
-        if (name == null) {
-            return "UNO.Card{" +
-                    "type=" + type +
-                    ", number=" + number +
-                    '\'' +
-                    '}';
-        } else {
-            return "UNO.Card{" + "type=" + type + ", name='" + name +
-                    '\'' +
-                    '}';
-        }
+        return "Card{" +
+                "type=" + type +
+                ", number=" + number +
+                ", value=" + value +
+                '}';
     }
 
     public Type getColor() {
