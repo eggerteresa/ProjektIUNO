@@ -7,23 +7,29 @@ public class Card {
     private int number;
 
     private int value;
+    private static int counter= 0;
 
+    private int kartenID;
 
+    public int getKartenID() {
+        return kartenID;
+    }
 
     public Card(Type type, int number, int value) {
         this.type = type;
         this.number = number;
         this.value = value;
+        this.kartenID = counter++;
     }
 
 
     @Override
     public String toString() {
-        return "Card{" +
+        return  "Card {" +
                 "type=" + type +
                 ", number=" + number +
-                ", value=" + value +
-                '}';
+                ", kartenID=" + kartenID + " }"+
+                "\n";
     }
 
     public Type getColor() {
@@ -49,5 +55,6 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
+
 //
 }

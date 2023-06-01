@@ -80,7 +80,5 @@ public class Spielermanagement {
 //
 //    }
 
-    // Collections.shuffle(unsere Collection);
-
 
 }

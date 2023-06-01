@@ -21,8 +21,8 @@ public class Spieler implements SpielerMethoden {
         return "Spieler{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
-                ", points=" + points +
-                ", kartenprospieler=" + kartenprospieler +
+                ", points=" + points + "\n"+
+                ", kartenprospieler=" + "\n" +kartenprospieler +
                 '}';
     }
 
@@ -54,6 +54,13 @@ public class Spieler implements SpielerMethoden {
         return kartenprospieler;
     }
 
+//    public ArrayList<Spieler> showCardsinHand(int id){
+//        ArrayList<Spieler> result = new ArrayList<>();
+//      //  for(Spieler spieler : ){
+//            if()
+//        }
+//    }
+
     public void setKartenprospieler(ArrayList<Card> kartenprospieler) {
         this.kartenprospieler = kartenprospieler;
 
@@ -62,4 +69,22 @@ public class Spieler implements SpielerMethoden {
         kartenprospieler.add(card);
     }
     //Methode Karten nehmen
+    public void karteSpielen(int eingabe){
+        kartenprospieler.remove(eingabe);
+
+    }
+    public Card getCardByID(int eingabe) {
+        Card result = null;
+        for (Card c : kartenprospieler) {
+            if (c.getKartenID() == eingabe) {
+                result = c;
+            }
+        }
+        return result;
+    }
+
+    public Card lastCardHand() {
+
+        return kartenprospieler.get(kartenprospieler.size() - 1);
+    }
 }

@@ -21,17 +21,17 @@ public class Game {
         abhebestapel.createcards(Type.GREEN);
 
         abhebestapel.createActionCards(Type.BLACK);
-        System.out.println(abhebestapel.cards);
+//        System.out.println(abhebestapel.cards);
         System.out.println(abhebestapel.cards.size());
 
         //Karten mischen
         abhebestapel.shuffleCards();
-        System.out.println(abhebestapel.cards);
+//        System.out.println(abhebestapel.cards);
 
         distributeCards(spielermanagement, abhebestapel);
         AblegeStapel ablegeStapel = new AblegeStapel();
 
-        System.out.println(abhebestapel.cards);
+//        System.out.println(abhebestapel.cards);
 
         ablegeStapel.addCard(abhebestapel.dealCard());
         System.out.println(ablegeStapel.lastCardShow());
@@ -46,12 +46,10 @@ public class Game {
         reihenfolgeFestlegen(spielermanagement);
 
         spielerReihenfolgeAnzeigen(spielermanagement);
+
         aktuellerSpieler = 1;
-
-
         Spielverlauf spielverlauf = new Spielverlauf();
         spielverlauf.rundeSpielen(aktuellerSpieler,ablegeStapel,abhebestapel,spielermanagement);
-
 
     }
 
@@ -67,10 +65,11 @@ public class Game {
         }
     }
 
-    public static void firstCard(CardDeck abhebenstapel) {
+    public static void firstCard(CardDeck abhebestapel) {
 
-        Card c1 = abhebenstapel.dealCard();
+        Card c1 = abhebestapel.dealCard();
         System.out.println(c1);
+
     }
     public static void reihenfolgeFestlegen(Spielermanagement sm){
         Collections.shuffle(sm.getSpielergruppe());
