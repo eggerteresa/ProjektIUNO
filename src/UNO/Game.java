@@ -45,7 +45,7 @@ public class Game {
         System.out.println(spielermanagement.getSpielergruppe());
         reihenfolgeFestlegen(spielermanagement);
 
-        spielerReihenfolgeAnzeigen(spielermanagement);
+        //spielerReihenfolgeAnzeigen(spielermanagement);
 
         // spielerReihenfolge, Spieler um 1 weiter
        // spielerReihenfolgeWeiter(aktuellerSpieler);
@@ -79,21 +79,23 @@ public class Game {
         System.out.println("Spielerreihenfolge wurde festgelegt.");
     }
 
-    public static void spielerReihenfolgeAnzeigen(Spielermanagement sm) {
-        int counter = 1;
+   /* public static void spielerReihenfolgeAnzeigen(Spielermanagement sm) {
+        int counter = 0;
         for (Spieler s : sm.getSpielergruppe()) {
             System.out.println("Spieler " + counter++ + ": " + s.getName());
             //TODO Bedeutung?
-           // s.setId(counter-1);
+            s.setId(counter-1);
 
         }
+        */
     }
 
 
 
 
 
-}
+
+
 
 
 

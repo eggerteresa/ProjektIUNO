@@ -7,10 +7,10 @@ public class Spielverlauf {
     //int aktuellerSpieler=1;
 
 
- int aktuellerSpieler = 1;
+ int aktuellerSpieler = 0;
     // WIRD das benötigt???? ist einfach eine int-variable und nicht der Spieler
 
-    public void rundeSpielen(AblegeStapel ablegeStapel, CardDeck abhebestapel, Spielermanagement spielermanagement) {
+    public void rundeSpielen(int aktuellerSpieler, AblegeStapel ablegeStapel, CardDeck abhebestapel, Spielermanagement spielermanagement) {
         Scanner scanner = new Scanner(System.in);
 
       //  Spieler aktuellerspieler = spielermanagement.getPlayerByIndex(0);
@@ -111,19 +111,29 @@ public class Spielverlauf {
             System.out.println("Karten im Ablegestapel: " + ablegeStapel.ablegeStapelcards.size());
             System.out.println("Karten im Abhebestapel: " + abhebestapel.cards.size());
 
+if (gewinnerFestlegen(spielermanagement) != null) {
+    System.out.println(" Der Rundengewinner ist " + gewinnerFestlegen(spielermanagement));
+    System.out.println("Soll eine weitere Runde gespielt werden? (1 = ja, 2 = nein)");
+    int rundeweiter = scanner.nextInt();
 
+    //TODO weiteren switch hier einbauen??
+    // wie springen wir dann wieder in die while schleife?
+    //oder while schleife als Methode ausbauen???
+}
         }
+
+
 
     }
 
 
 
     public void spielerReihenfolgeWeiter(int aktuellerSpieler) { // wenn wir später aktuellerSpieler mit 1 beginnen möchten - hier noch anpassen, derzeit aktuellerSpieler=0
-        if (aktuellerSpieler < 5) {
+        if (aktuellerSpieler < 4) {
             aktuellerSpieler = aktuellerSpieler + 1;
         }
-        if (aktuellerSpieler == 4) {
-            aktuellerSpieler = 1;
+        if (aktuellerSpieler == 3) {
+            aktuellerSpieler =0;
         }
 
     }
@@ -133,11 +143,12 @@ public class Spielverlauf {
        Spieler rundengewinner = null;
 
         for (Spieler s : sm.getSpielergruppe()) {
-            if (s.getKartenprospieler().isEmpty()) {
+            if (s.getKartenprospieler().isEmpty() == true) {
 
                 rundengewinner = s;
             }
         }
+        System.out.println("Der Rundengewinner ist " + rundengewinner);
        return rundengewinner;
 
     }
