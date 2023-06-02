@@ -63,6 +63,8 @@ public class Spielermanagement {
     }
 
 
+
+
 //    public void distributeCards() {
 //
 //        for (int i = 0; i<spielergruppe.size(); i++){

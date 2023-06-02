@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Game {
     public static void main(String[] args) {
-        int aktuellerSpieler = 0;
+
         Spielermanagement spielermanagement = new Spielermanagement();
 
         spielermanagement.spielerfestlegen();
@@ -36,9 +36,9 @@ public class Game {
         ablegeStapel.addCard(abhebestapel.dealCard());
         System.out.println(ablegeStapel.lastCardShow());
 
-       //System.out.println(ablegeStapel.ablegeStapelcards);
+        //System.out.println(ablegeStapel.ablegeStapelcards);
 
-       // firstCard(abhebestapel);
+        // firstCard(abhebestapel);
 
         System.out.println(abhebestapel.cards.size());
 
@@ -47,9 +47,11 @@ public class Game {
 
         spielerReihenfolgeAnzeigen(spielermanagement);
 
-        aktuellerSpieler = 1;
+        // spielerReihenfolge, Spieler um 1 weiter
+       // spielerReihenfolgeWeiter(aktuellerSpieler);
+
         Spielverlauf spielverlauf = new Spielverlauf();
-        spielverlauf.rundeSpielen(aktuellerSpieler,ablegeStapel,abhebestapel,spielermanagement);
+        spielverlauf.rundeSpielen(spielverlauf.aktuellerSpieler, ablegeStapel, abhebestapel, spielermanagement);
 
     }
 
@@ -71,19 +73,28 @@ public class Game {
         System.out.println(c1);
 
     }
-    public static void reihenfolgeFestlegen(Spielermanagement sm){
+
+    public static void reihenfolgeFestlegen(Spielermanagement sm) {
         Collections.shuffle(sm.getSpielergruppe());
         System.out.println("Spielerreihenfolge wurde festgelegt.");
     }
-    public static void spielerReihenfolgeAnzeigen(Spielermanagement sm){
+
+    public static void spielerReihenfolgeAnzeigen(Spielermanagement sm) {
         int counter = 1;
-        for(Spieler s : sm.getSpielergruppe()){
-            System.out.println("Spieler "+ counter++ +": "+  s.getName());
-            s.setId(counter-1);
+        for (Spieler s : sm.getSpielergruppe()) {
+            System.out.println("Spieler " + counter++ + ": " + s.getName());
+            //TODO Bedeutung?
+           // s.setId(counter-1);
 
         }
     }
 
 
+
+
+
 }
+
+
+
 

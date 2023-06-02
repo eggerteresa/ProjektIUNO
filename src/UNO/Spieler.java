@@ -16,6 +16,7 @@ public class Spieler implements SpielerMethoden {
         this.points = 0;
     }
 
+
     @Override
     public String toString() {
         return "Spieler{" +
@@ -87,4 +88,7 @@ public class Spieler implements SpielerMethoden {
 
         return kartenprospieler.get(kartenprospieler.size() - 1);
     }
+
+
+
 }
