@@ -7,39 +7,29 @@ public class Card {
     private int number;
 
     private int value;
+    private static int counter= 0;
 
-    private String name;
+    private int kartenID;
 
-
-    public Card(Type type, String name) {
-        this.type = type;
-        this.name = name;
+    public int getKartenID() {
+        return kartenID;
     }
 
     public Card(Type type, int number, int value) {
         this.type = type;
         this.number = number;
         this.value = value;
+        this.kartenID = counter++;
     }
 
-    public Card(Type type, int number) {
-        this.type = type;
-        this.number = number;
-    }
 
     @Override
     public String toString() {
-        if (name == null) {
-            return "UNO.Card{" +
-                    "type=" + type +
-                    ", number=" + number +
-                    '\'' +
-                    '}';
-        } else {
-            return "UNO.Card{" + "type=" + type + ", name='" + name +
-                    '\'' +
-                    '}';
-        }
+        return  "Card {" +
+                "type=" + type +
+                ", number=" + number +
+                ", kartenID=" + kartenID + " }"+
+                "\n";
     }
 
     public Type getColor() {
@@ -65,5 +55,6 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
+
 //
 }

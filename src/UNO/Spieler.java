@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Spieler implements SpielerMethoden {
 
     protected String name;
-    protected int id;
+    protected int id; // wirklich notwendig?
     protected int points;
     protected static int counter = 0;
     protected ArrayList<Card> kartenprospieler = new ArrayList<>();
@@ -16,13 +16,14 @@ public class Spieler implements SpielerMethoden {
         this.points = 0;
     }
 
+
     @Override
     public String toString() {
         return "Spieler{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
-                ", points=" + points +
-                ", kartenprospieler=" + kartenprospieler +
+                ", points=" + points + "\n"+
+                ", kartenprospieler=" + "\n" +kartenprospieler +
                 '}';
     }
 
@@ -54,6 +55,13 @@ public class Spieler implements SpielerMethoden {
         return kartenprospieler;
     }
 
+//    public ArrayList<Spieler> showCardsinHand(int id){
+//        ArrayList<Spieler> result = new ArrayList<>();
+//      //  for(Spieler spieler : ){
+//            if()
+//        }
+//    }
+
     public void setKartenprospieler(ArrayList<Card> kartenprospieler) {
         this.kartenprospieler = kartenprospieler;
 
@@ -62,4 +70,25 @@ public class Spieler implements SpielerMethoden {
         kartenprospieler.add(card);
     }
     //Methode Karten nehmen
+    public void karteSpielen(int eingabe){
+        kartenprospieler.remove(eingabe);
+
+    }
+    public Card getCardByID(int eingabe) {
+        Card result = null;
+        for (Card c : kartenprospieler) {
+            if (c.getKartenID() == eingabe) {
+                result = c;
+            }
+        }
+        return result;
+    }
+
+    public Card lastCardHand() {
+
+        return kartenprospieler.get(kartenprospieler.size() - 1);
+    }
+
+
+
 }

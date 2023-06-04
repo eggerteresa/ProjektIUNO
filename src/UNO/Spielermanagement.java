@@ -13,6 +13,11 @@ public class Spielermanagement {
         return spielergruppe;
     }
 
+    public Spieler getPlayerByIndex(int index) {
+        return spielergruppe.get(index - 1);
+    }
+
+
     public void setSpielergruppe(ArrayList<Spieler> spielergruppe) {
         this.spielergruppe = spielergruppe;
     }
@@ -37,7 +42,7 @@ public class Spielermanagement {
 //        spielergruppe.remove(player);
 //    }
 
-    public String spielerName() {
+    public String spielerNamefestlegen() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geben Sie Ihren Namen ein: ");
@@ -46,16 +51,27 @@ public class Spielermanagement {
 
     }
 
-    public void spielerfestlegen() {
+    public void spielerHinzufuegen() {
 
         for (int i = 0; i < 4; i++) {
 
-            Spieler player = new Spieler(spielerName());
+            Spieler player = new Spieler(spielerNamefestlegen());
             spielergruppe.add(player);
 
         }
 
     }
+    public void reihenfolgeFestlegen(Spielermanagement sm) {
+        Collections.shuffle(sm.getSpielergruppe());
+        int idsetter = 1;
+        System.out.println("Spielerreihenfolge wurde festgelegt:");
+        for (Spieler spieler:sm.getSpielergruppe()){
+            spieler.setId(idsetter++);
+            System.out.println("Spieler " + spieler.id+ " : "+ spieler.name);
+        }
+    }
+
+
 
 
 //    public void distributeCards() {
@@ -74,8 +90,6 @@ public class Spielermanagement {
 //
 //
 //    }
-
-    // Collections.shuffle(unsere Collection);
 
 
 }
