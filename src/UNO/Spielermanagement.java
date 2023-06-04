@@ -17,6 +17,16 @@ public class Spielermanagement {
         return spielergruppe.get(index - 1);
     }
 
+    public Spieler getPlayerByID(int id){
+        Spieler result = null;
+        for(Spieler spieler : spielergruppe){
+            if(id == spieler.id){
+                result = spieler;
+            }
+        }
+        return result;
+    }
+
 
     public void setSpielergruppe(ArrayList<Spieler> spielergruppe) {
         this.spielergruppe = spielergruppe;
