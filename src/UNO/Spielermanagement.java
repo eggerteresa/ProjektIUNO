@@ -44,9 +44,7 @@ public class Spielermanagement {
     }
 
 
-//    public void add(Spieler player) {
-//        spielergruppe.add(player);
-//    }
+
 //
 //    public void remove (Spieler player) {
 //        spielergruppe.remove(player);
@@ -80,26 +78,5 @@ public class Spielermanagement {
             System.out.println("Spieler " + spieler.id+ " : "+ spieler.name);
         }
     }
-
-
-
-
-//    public void distributeCards() {
-//
-//        for (int i = 0; i<spielergruppe.size(); i++){
-//        for (int j = 0; j<7; j++) {
-//
-//
-//
-//
-//
-//
-//        }
-//
-//        }
-//
-//
-//    }
-
 
 }

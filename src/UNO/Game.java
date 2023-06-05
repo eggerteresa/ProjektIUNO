@@ -9,18 +9,17 @@ public class Game {
 
         spielermanagement.spielerHinzufuegen();
 
-        System.out.println(spielermanagement);
-
-
         CardDeck abhebestapel = new CardDeck();
         abhebestapel.createcards(Type.RED);
         abhebestapel.createcards(Type.YELLOW);
         abhebestapel.createcards(Type.BLUE);
         abhebestapel.createcards(Type.GREEN);
+        abhebestapel.createActionCards();
 
-        abhebestapel.createActionCards(Type.BLACK);
-//        System.out.println(abhebestapel.cards);
-        System.out.println(abhebestapel.cards.size());
+
+
+       System.out.println(abhebestapel.cards);
+      System.out.println(abhebestapel.cards.size());
 
         //Karten mischen
         abhebestapel.shuffleCards();
@@ -32,17 +31,17 @@ public class Game {
 //        System.out.println(abhebestapel.cards);
 
         ablegeStapel.addCard(abhebestapel.dealCard());
-        System.out.println(ablegeStapel.lastCardShow());
+
 
         //System.out.println(ablegeStapel.ablegeStapelcards);
 
         // firstCard(abhebestapel);
 
-        System.out.println(abhebestapel.cards.size());
+      //  System.out.println(abhebestapel.cards.size());
 
         System.out.println(spielermanagement.getSpielergruppe());
 
-        spielermanagement.reihenfolgeFestlegen(spielermanagement);
+     //   spielermanagement.reihenfolgeFestlegen(spielermanagement);
 
         //spielerReihenfolgeAnzeigen(spielermanagement);
 
@@ -50,7 +49,8 @@ public class Game {
         // spielerReihenfolgeWeiter(aktuellerSpieler);
 
         Spielverlauf spielverlauf = new Spielverlauf();
-        spielverlauf.rundeSpielen(spielverlauf.aktuellerSpieler, ablegeStapel, abhebestapel, spielermanagement);
+        spielverlauf.rundeSpielen(ablegeStapel,abhebestapel,spielermanagement);
+
 
     }
 
@@ -64,7 +64,7 @@ public class Game {
             }
             System.out.println(spieler);
         }
-    }
+    }//Methode ins Spielermanagement oder Carddeck verschieben
 
     public static void firstCard(CardDeck abhebestapel) {
 

@@ -5,24 +5,19 @@ import java.util.Scanner;
 
 public class Spielverlauf {
     //int aktuellerSpieler=1;
-
-
-  //  int aktuellerSpieler = 0;
+    //  int aktuellerSpieler = 0;
     // WIRD das benötigt???? ist einfach eine int-variable und nicht der Spieler
 
-    public void rundeSpielen(Spieler aktuellerSpieler, Ablegestapel ablegeStapel, CardDeck abhebestapel, Spielermanagement spielermanagement) {
+    public void rundeSpielen(Ablegestapel ablegeStapel, CardDeck abhebestapel, Spielermanagement spielermanagement) {
         Scanner scanner = new Scanner(System.in);
-
-        Spieler aktuellerspieler = spielermanagement.getPlayerByID(1);
-
-
+        Spieler aktuellerSpieler = spielermanagement.getPlayerByID(1);
 
         while (gewinnerFestlegen(spielermanagement) == null) { // Solange die GewinnerMethode null zurückliefert, soll das folgende Programm laufen:
 
-            System.out.println("Aktueller Spieler ist: " + aktuellerSpieler );
-            System.out.println(" Was möchtest du tun? (1 = Karte spielen, 2 = Karte abheben, 3= nächster Spieler)");
+            System.out.println("Aktueller Spieler ist: " + aktuellerSpieler);
+            System.out.println(ablegeStapel.lastCardShow());
+            System.out.println(" Was möchtest du tun? (1 = Karte spielen, 2 = Karte abheben) ");
             int choice = scanner.nextInt();
-
 
             switch (choice) {
 
@@ -34,31 +29,45 @@ public class Spielverlauf {
                     do {
                         System.out.println("Bitte gib die KartenID ein: ");
                         int eingabe = scanner.nextInt();
-                        zuspielendeKarte = aktuellerspieler.getCardByID(eingabe);
+                        zuspielendeKarte = aktuellerSpieler.getCardByID(eingabe);
                         for (Card c : aktuellerSpieler.kartenprospieler) {
 //
                             if (c.getKartenID() == eingabe) {
+
+                                aktuellerSpieler.karteSpielen(zuspielendeKarte);
                                 ablegeStapel.addCard(zuspielendeKarte);
                                 ablegeStapel.lastCardShow();
                             }
                         }
                         if (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte)) {
                             System.out.println("Karte mit der ID nicht in deinen Karten enthalten, versuche es nochmal ");
+                            //TODO wie kommen wir nochmal nach oben?
                         }
+
                     }
-                    while (!aktuellerspieler.kartenprospieler.contains(zuspielendeKarte));
+                    while (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte));
 
 
 //ToDO Regeln noch weiter implementieren!!!!!!!!!
 
 
-
                     // wenn kein weiterer Spielzug möglich
 
 
-
                     //zu nächstem Spieler wechseln
-                    spielerReihenfolgeWeiter(aktuellerSpieler = );
+                    if (aktuellerSpieler.getId() == 1) {
+                        aktuellerSpieler = spielermanagement.getPlayerByID(2);
+                    }
+                    if (aktuellerSpieler.getId() == 2) {
+                        aktuellerSpieler = spielermanagement.getPlayerByID(3);
+                    }
+                    if (aktuellerSpieler.getId() == 3) {
+                        aktuellerSpieler = spielermanagement.getPlayerByID(4);
+                    }
+                    if (aktuellerSpieler.getId() == 4) {
+                        aktuellerSpieler = spielermanagement.getPlayerByID(1);
+
+                    }
                     break;
 
                 case 2:
@@ -67,7 +76,7 @@ public class Spielverlauf {
                     aktuellerSpieler.kartenprospieler.add(abhebestapel.dealCard());
 
                     //nur letzte karte ausgeben:
-                    System.out.println("neue Karte" + spielermanagement.getPlayerByIndex(aktuellerSpieler.lastCardHand());
+                    System.out.println("neue Karte" + aktuellerSpieler.lastCardHand());
 
                     System.out.println("Möchtest du die Karte ausspielen? (1 = Ja, 2 = Nein)");
 
@@ -76,29 +85,27 @@ public class Spielverlauf {
                         do {
                             System.out.println("Bitte gib die KartenID ein: ");
                             int eingabe = scanner.nextInt();
-                            zuspielendeKarte = spielermanagement.getPlayerByIndex(aktuellerSpieler).getCardByID(eingabe);
-                            for (Card c : spielermanagement.getPlayerByIndex(aktuellerSpieler).kartenprospieler) {
+                            zuspielendeKarte = aktuellerSpieler.getCardByID(eingabe);
+                            for (Card c : aktuellerSpieler.kartenprospieler) {
 //
                                 if (c.getKartenID() == eingabe) {
+                                    aktuellerSpieler.kartenprospieler.remove(zuspielendeKarte);
                                     ablegeStapel.addCard(zuspielendeKarte);
+
                                     //ablegeStapel.lastCardShow();
 
                                 }
 
                             }
-                            if (!spielermanagement.getPlayerByIndex(aktuellerSpieler).kartenprospieler.contains(zuspielendeKarte)) {
+                            if (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte)) {
                                 System.out.println("Karte mit der ID nicht in deinen Karten enthalten, versuche es nochmal ");
                             }
                         }
-                        while (!spielermanagement.getPlayerByIndex(aktuellerSpieler).kartenprospieler.contains(zuspielendeKarte));
+                        while (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte));
 
                     }
                     // nächster Spieler folgt.
-                    spielerReihenfolgeWeiter(aktuellerSpieler);
-                    break;
-                case 3:
-                    //nächster Spieler ist an der Reihe
-                    spielerReihenfolgeWeiter(aktuellerSpieler);
+                    spielerReihenfolgeWeiter(aktuellerSpieler, spielermanagement);
                     break;
 
                 default:
@@ -123,22 +130,29 @@ public class Spielverlauf {
         }
 
 
-
     }
 
 
-
-    public void spielerReihenfolgeWeiter(int aktuellerSpieler) { // wenn wir später aktuellerSpieler mit 1 beginnen möchten - hier noch anpassen, derzeit aktuellerSpieler=0
-        if (aktuellerSpieler < 4) {
-            aktuellerSpieler = aktuellerSpieler + 1;
+    public void spielerReihenfolgeWeiter(Spieler aktuellerSpieler, Spielermanagement spielermanagement) { // wenn wir später aktuellerSpieler mit 1 beginnen möchten - hier noch anpassen, derzeit aktuellerSpieler=0
+        if (aktuellerSpieler == null) {
+            aktuellerSpieler = spielermanagement.getPlayerByID(1);
         }
-        if (aktuellerSpieler == 3) {
-            aktuellerSpieler =0;
+        if (aktuellerSpieler.getId() == 1) {
+            aktuellerSpieler = spielermanagement.getPlayerByID(2);
         }
+        if (aktuellerSpieler.getId() == 2) {
+            aktuellerSpieler = spielermanagement.getPlayerByID(3);
+        }
+        if (aktuellerSpieler.getId() == 3) {
+            aktuellerSpieler = spielermanagement.getPlayerByID(4);
+        }
+        if (aktuellerSpieler.getId() == 4) {
+            aktuellerSpieler = spielermanagement.getPlayerByID(1);
 
+        }
     }
 //Hier würde ich eine Methode schreiben, die a) den aktuellen Spieler neu festlegt und b) checkt,
-// ob der Spieler gerade ziehen darf (boolean)
+//TODO ob der Spieler gerade ziehen darf (boolean)
 
     public Spieler gewinnerFestlegen(Spielermanagement sm) {
         Spieler rundengewinner = null;
@@ -149,8 +163,9 @@ public class Spielverlauf {
                 rundengewinner = s;
             }
         }
-        System.out.println("Der Rundengewinner ist " + rundengewinner);
+        if (rundengewinner != null) {
+            System.out.println("Der Rundengewinner ist " + rundengewinner);
+        }
         return rundengewinner;
-
     }
 }

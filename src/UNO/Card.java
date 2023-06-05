@@ -1,13 +1,11 @@
 package UNO;
 
-import UNO.Type;
-
 public class Card {
     private Type type;
     private int number;
 
     private int value;
-    private static int counter= 0;
+    private static int counter = 0;
 
     private int kartenID;
 
@@ -22,21 +20,37 @@ public class Card {
         this.kartenID = counter++;
     }
 
+    public Card(Type type, int value) {
+        this.type = type;
+        this.value = value;
+        this.kartenID = counter++;
+    }
 
     @Override
     public String toString() {
-        return  "Card {" +
-                "type=" + type +
-                ", number=" + number +
-                ", kartenID=" + kartenID + " }"+
-                "\n";
+
+        if (getType().equals(Type.BLUE) || getType().equals(Type.GREEN) || getType().equals(Type.YELLOW) || getType().equals(Type.RED)) {
+
+            return "Card {" +
+                    "type=" + type + " }" +
+                    ", number=" + number +
+                    ", kartenID=" + kartenID + " }" +
+                    "\n";
+
+        } else {
+
+            return "Card {" +
+                    "type=" + type + " }" +
+                    ", kartenID=" + kartenID + " }" +
+                    "\n";
+        }
     }
 
-    public Type getColor() {
+    public Type getType() {
         return type;
     }
 
-    public void setColor(Type type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

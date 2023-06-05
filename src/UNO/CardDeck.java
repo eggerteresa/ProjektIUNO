@@ -12,36 +12,41 @@ public class CardDeck {
 //    }
     ArrayList<Card> cards = new ArrayList<>();
 
-    public void createcards(Type Colour) {
+    public void createcards(Type type) {
         for (int i = 0; i < 10; i++) {
-            cards.add(new Card(Colour, i, i));
+            if (type == Type.YELLOW || type == Type.BLUE || type == Type.GREEN || type == Type.RED) {
+                cards.add(new Card(type, i, i));
+            }
         }
 
-        for (int i = 1; i < 10; i++) {
-            cards.add(new Card(Colour, i, i));
+            for (int i = 1; i < 10; i++) {
+                if (type == Type.YELLOW || type == Type.BLUE || type == Type.GREEN || type == Type.RED) {
+                    cards.add(new Card(type, i, i));
+                }
+
         }
     }
 
-    public void createActionCards(Type type) {
+    public void createActionCards() {
 
         for (int i = 0; i < 4; i++) {
-            cards.add(new Card(Type.BLACK, Aktionkarten.PLUSFOUR.getValue(), Aktionkarten.PLUSFOUR.getNumber()));
-            cards.add(new Card(Type.BLACK, Aktionkarten.FOURCOLOURS.getValue(), Aktionkarten.FOURCOLOURS.getNumber()));
+            cards.add(new Card(Type.PLUS_4,50));
+            cards.add(new Card(Type.COLORCHANGE,50));
         }
 
         for (int i = 0; i < 2; i++) {
-            cards.add(new Card(Type.GREEN, Aktionkarten.ZIEHZWEI.getValue(), Aktionkarten.ZIEHZWEI.getNumber()));
-            cards.add(new Card(Type.BLUE, Aktionkarten.ZIEHZWEI.getValue(), Aktionkarten.ZIEHZWEI.getNumber()));
-            cards.add(new Card(Type.YELLOW, Aktionkarten.ZIEHZWEI.getValue(), Aktionkarten.ZIEHZWEI.getNumber()));
-            cards.add(new Card(Type.RED, Aktionkarten.ZIEHZWEI.getValue(), Aktionkarten.ZIEHZWEI.getNumber()));
-            cards.add(new Card(Type.GREEN, Aktionkarten.REVERSE.getValue(), Aktionkarten.REVERSE.getNumber()));
-            cards.add(new Card(Type.BLUE, Aktionkarten.REVERSE.getValue(), Aktionkarten.REVERSE.getNumber()));
-            cards.add(new Card(Type.YELLOW, Aktionkarten.REVERSE.getValue(), Aktionkarten.REVERSE.getNumber()));
-            cards.add(new Card(Type.RED, Aktionkarten.REVERSE.getValue(), Aktionkarten.REVERSE.getNumber()));
-            cards.add(new Card(Type.GREEN, Aktionkarten.PASS.getValue(), Aktionkarten.PASS.getNumber()));
-            cards.add(new Card(Type.BLUE, Aktionkarten.PASS.getValue(), Aktionkarten.PASS.getNumber()));
-            cards.add(new Card(Type.YELLOW, Aktionkarten.PASS.getValue(), Aktionkarten.PASS.getNumber()));
-            cards.add(new Card(Type.RED, Aktionkarten.PASS.getValue(), Aktionkarten.PASS.getNumber()));
+            cards.add(new Card(Type.GREEN_PLUS2,20));
+            cards.add(new Card(Type.GREEN_PASS,20));
+            cards.add(new Card(Type.GREEN_REVERSE,20));
+            cards.add(new Card(Type.BLUE_PASS,20));
+            cards.add(new Card(Type.BLUE_PLUS2,20));
+            cards.add(new Card(Type.BLUE_REVERSE,20));
+            cards.add(new Card(Type.RED_PASS,20));
+            cards.add(new Card(Type.RED_PLUS2,20));
+            cards.add(new Card(Type.RED_REVERSE,20));
+            cards.add(new Card(Type.YELLOW_PASS,20));
+            cards.add(new Card(Type.YELLOW_PLUS2,20));
+            cards.add(new Card(Type.YELLOW_REVERSE,20));
 
         }
     }

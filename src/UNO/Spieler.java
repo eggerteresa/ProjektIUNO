@@ -2,7 +2,7 @@ package UNO;
 
 import java.util.ArrayList;
 
-public class Spieler implements SpielerMethoden {
+public class Spieler  {
 
     protected String name;
     protected int id; // wirklich notwendig?
@@ -70,9 +70,8 @@ public class Spieler implements SpielerMethoden {
         kartenprospieler.add(card);
     }
     //Methode Karten nehmen
-    public void karteSpielen(int eingabe){
-        kartenprospieler.remove(eingabe);
-
+    public void karteSpielen(Card card){
+     kartenprospieler.remove(card);
     }
     public Card getCardByID(int eingabe) {
         Card result = null;
