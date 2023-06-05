@@ -38,6 +38,7 @@ public class Spielverlauf {
                                 ablegeStapel.addCard(zuspielendeKarte);
                                 ablegeStapel.lastCardShow();
                             }
+                            //funktioniert noch nicht, Fehlermeldung
                         }
                         if (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte)) {
                             System.out.println("Karte mit der ID nicht in deinen Karten enthalten, versuche es nochmal ");
@@ -93,16 +94,13 @@ public class Spielverlauf {
                                     ablegeStapel.addCard(zuspielendeKarte);
 
                                     //ablegeStapel.lastCardShow();
-
                                 }
-
                             }
                             if (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte)) {
                                 System.out.println("Karte mit der ID nicht in deinen Karten enthalten, versuche es nochmal ");
                             }
                         }
                         while (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte));
-
                     }
                     // nächster Spieler folgt.
                     spielerReihenfolgeWeiter(aktuellerSpieler, spielermanagement);
