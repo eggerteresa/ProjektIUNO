@@ -3,26 +3,26 @@ package UNO;
 import java.util.ArrayList;
 
 public class Ablegestapel {
-    ArrayList<Card> ablegeStapelcards;
+    ArrayList<Card> ablegeStapel;
 
 
     public void addCard(Card c) {
-        ablegeStapelcards.add(c);
+        ablegeStapel.add(c);
 
     }
 
 
     public Card lastCardShow() {
         System.out.println("Oberste Karte im Ablegestapel: ");
-        return ablegeStapelcards.get(ablegeStapelcards.size() - 1);
+        return ablegeStapel.get(ablegeStapel.size() - 1);
     }
 
     public Ablegestapel() {
-        this.ablegeStapelcards = new ArrayList<>();
+        this.ablegeStapel = new ArrayList<>();
     }
 
-    public ArrayList<Card> getAblegeStapelcards() {
-        return ablegeStapelcards;
+    public ArrayList<Card> getAblegeStapel() {
+        return ablegeStapel;
     }
 
     //Arrayliste

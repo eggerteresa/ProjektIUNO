@@ -32,7 +32,7 @@ public class Card {
         if (getType().equals(Type.BLUE) || getType().equals(Type.GREEN) || getType().equals(Type.YELLOW) || getType().equals(Type.RED)) {
 
             return "Card {" +
-                    "type=" + type + " }" +
+                    "type=" + type  +
                     ", number=" + number +
                     ", kartenID=" + kartenID + " }" +
                     "\n";

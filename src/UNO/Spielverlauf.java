@@ -1,6 +1,5 @@
 package UNO;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Spielverlauf {
@@ -24,21 +23,22 @@ public class Spielverlauf {
                 case 1:
                     //karte mit kartenID auswählen
                     System.out.println("Welche Karte möchtest du spielen?");
-                    Card zuspielendeKarte = null;
+                    Card zuspielendeKarte;
+                    System.out.println("Bitte gib die KartenID ein: ");
+                    int eingabe = scanner.nextInt();
+                    zuspielendeKarte = aktuellerSpieler.getCardByID(eingabe);
 
                     do {
-                        System.out.println("Bitte gib die KartenID ein: ");
-                        int eingabe = scanner.nextInt();
-                        zuspielendeKarte = aktuellerSpieler.getCardByID(eingabe);
+
                         for (Card c : aktuellerSpieler.kartenprospieler) {
-//
+
                             if (c.getKartenID() == eingabe) {
 
-                                aktuellerSpieler.karteSpielen(zuspielendeKarte);
-                                ablegeStapel.addCard(zuspielendeKarte);
-                                ablegeStapel.lastCardShow();
+                               aktuellerSpieler.karteSpielen(zuspielendeKarte,ablegeStapel);
+
+
                             }
-                            //funktioniert noch nicht, Fehlermeldung
+                            System.out.println(ablegeStapel.lastCardShow());
                         }
                         if (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte)) {
                             System.out.println("Karte mit der ID nicht in deinen Karten enthalten, versuche es nochmal ");
@@ -46,7 +46,7 @@ public class Spielverlauf {
                         }
 
                     }
-                    while (!aktuellerSpieler.kartenprospieler.contains(zuspielendeKarte));
+                    while (!ablegeStapel.getAblegeStapel().contains(zuspielendeKarte));
 
 
 //ToDO Regeln noch weiter implementieren!!!!!!!!!
@@ -85,7 +85,7 @@ public class Spielverlauf {
                     if (antwort == 1) {
                         do {
                             System.out.println("Bitte gib die KartenID ein: ");
-                            int eingabe = scanner.nextInt();
+                            eingabe = scanner.nextInt();
                             zuspielendeKarte = aktuellerSpieler.getCardByID(eingabe);
                             for (Card c : aktuellerSpieler.kartenprospieler) {
 //
@@ -113,7 +113,7 @@ public class Spielverlauf {
 
             System.out.println(ablegeStapel.lastCardShow());
 
-            System.out.println("Karten im Ablegestapel: " + ablegeStapel.ablegeStapelcards.size());
+            System.out.println("Karten im Ablegestapel: " + ablegeStapel.ablegeStapel.size());
             System.out.println("Karten im Abhebestapel: " + abhebestapel.cards.size());
 
             if (gewinnerFestlegen(spielermanagement) != null) {

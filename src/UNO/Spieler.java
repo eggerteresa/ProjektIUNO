@@ -70,8 +70,9 @@ public class Spieler  {
         kartenprospieler.add(card);
     }
     //Methode Karten nehmen
-    public void karteSpielen(Card card){
+    public void karteSpielen(Card card, Ablegestapel ablegestapel){
      kartenprospieler.remove(card);
+     ablegestapel.addCard(card);
     }
     public Card getCardByID(int eingabe) {
         Card result = null;
