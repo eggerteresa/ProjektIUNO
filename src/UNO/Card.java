@@ -7,23 +7,23 @@ public class Card {
     private int value;
     private static int counter = 0;
 
-    private int kartenID;
+    private int CardID;
 
-    public int getKartenID() {
-        return kartenID;
+    public int getCardID() {
+        return CardID;
     }
 
     public Card(Type type, int number, int value) {
         this.type = type;
         this.number = number;
         this.value = value;
-        this.kartenID = counter++;
+        this.CardID = counter++;
     }
 
     public Card(Type type, int value) {
         this.type = type;
         this.value = value;
-        this.kartenID = counter++;
+        this.CardID = counter++;
     }
 
     @Override
@@ -34,14 +34,14 @@ public class Card {
             return "Card {" +
                     "type=" + type  +
                     ", number=" + number +
-                    ", kartenID=" + kartenID + " }" +
+                    ", ID=" + CardID + " }" +
                     "\n";
 
         } else {
 
             return "Card {" +
-                    "type=" + type + " }" +
-                    ", kartenID=" + kartenID + " }" +
+                    "type=" + type +
+                    ", ID=" + CardID + " } " +
                     "\n";
         }
     }

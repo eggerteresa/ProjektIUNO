@@ -2,28 +2,29 @@ package UNO;
 
 import java.util.ArrayList;
 
-public class Spieler  {
+public class Player {
 
     protected String name;
     protected int id; // wirklich notwendig?
     protected int points;
     protected static int counter = 0;
-    protected ArrayList<Card> kartenprospieler = new ArrayList<>();
+    protected ArrayList<Card> cardsInHand = new ArrayList<>();
 
-    public Spieler(String name) {
+    public Player(String name) {
         this.name = name;
         this.id = ++counter;
         this.points = 0;
+        this.cardsInHand = new ArrayList<>();
     }
 
 
     @Override
     public String toString() {
-        return "Spieler{" +
+        return "Player{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", points=" + points + "\n"+
-                ", kartenprospieler=" + "\n" +kartenprospieler +
+                ", kartenprospieler=" + "\n" + cardsInHand +
                 '}';
     }
 
@@ -51,8 +52,8 @@ public class Spieler  {
         this.points = points;
     }
 
-    public ArrayList<Card> getKartenprospieler() {
-        return kartenprospieler;
+    public ArrayList<Card> getCardsInHand() {
+        return cardsInHand;
     }
 
 //    public ArrayList<Spieler> showCardsinHand(int id){
@@ -62,22 +63,22 @@ public class Spieler  {
 //        }
 //    }
 
-    public void setKartenprospieler(ArrayList<Card> kartenprospieler) {
-        this.kartenprospieler = kartenprospieler;
+    public void setCardsInHand(ArrayList<Card> cardsInHand) {
+        this.cardsInHand = cardsInHand;
 
     }
-    public void karteHinzufügen(Card card){
-        kartenprospieler.add(card);
+    public void takeCard(Card card){
+        cardsInHand.add(card);
     }
     //Methode Karten nehmen
-    public void karteSpielen(Card card, Ablegestapel ablegestapel){
-     kartenprospieler.remove(card);
-     ablegestapel.addCard(card);
+    public void playCard(Card card, DiscardPile discardDeck){
+     cardsInHand.remove(card);
+     discardDeck.addCard(card);
     }
     public Card getCardByID(int eingabe) {
         Card result = null;
-        for (Card c : kartenprospieler) {
-            if (c.getKartenID() == eingabe) {
+        for (Card c : cardsInHand) {
+            if (c.getCardID() == eingabe) {
                 result = c;
             }
         }
@@ -86,8 +87,9 @@ public class Spieler  {
 
     public Card lastCardHand() {
 
-        return kartenprospieler.get(kartenprospieler.size() - 1);
+        return cardsInHand.get(cardsInHand.size() - 1);
     }
+
 
 
 

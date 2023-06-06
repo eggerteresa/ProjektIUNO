@@ -1,77 +1,63 @@
 package UNO;
 
-import java.util.Collections;
-
 public class Game {
     public static void main(String[] args) {
 
-        Spielermanagement spielermanagement = new Spielermanagement();
-
-        spielermanagement.spielerHinzufuegen();
-
-        CardDeck abhebestapel = new CardDeck();
-        abhebestapel.createcards(Type.RED);
-        abhebestapel.createcards(Type.YELLOW);
-        abhebestapel.createcards(Type.BLUE);
-        abhebestapel.createcards(Type.GREEN);
-        abhebestapel.createActionCards();
+        GameMethods gameMethods = new GameMethods();
+        gameMethods.prepareGame();
 
 
 
-       System.out.println(abhebestapel.cards);
-      System.out.println(abhebestapel.cards.size());
+//        PlayerList playerList = new PlayerList();
+//
+//        playerList.addPlayer();
+//
+//        CardDeck abhebestapel = new CardDeck();
+//        abhebestapel.createCards(Type.RED);
+//        abhebestapel.createCards(Type.YELLOW);
+//        abhebestapel.createCards(Type.BLUE);
+//        abhebestapel.createCards(Type.GREEN);
+//        abhebestapel.createActionCards();
+//
+//
+//
+//       System.out.println(abhebestapel.cards);
+//      System.out.println(abhebestapel.cards.size());
+//
+//        //Karten mischen
+//        abhebestapel.shuffleCards();
+////        System.out.println(abhebestapel.cards);
+//
+//        distributeCards(playerList, abhebestapel);
+//        DiscardDeck ablegeStapel = new DiscardDeck();
+//
+////        System.out.println(abhebestapel.cards);
+//
+//        ablegeStapel.addCard(abhebestapel.dealCard());
+//
+//
+//        //System.out.println(ablegeStapel.ablegeStapelcards);
+//
+//        // firstCard(abhebestapel);
+//
+//      //  System.out.println(abhebestapel.cards.size());
+//
+//        System.out.println(playerList.getPlayerlist());
+//
+//     //   playerList.reihenfolgeFestlegen(playerList);
+//
+//        //spielerReihenfolgeAnzeigen(playerList);
+//
+//        // spielerReihenfolge, Spieler um 1 weiter
+//        // spielerReihenfolgeWeiter(aktuellerSpieler);
+//
+//
+//
+//
+//    }
 
-        //Karten mischen
-        abhebestapel.shuffleCards();
-//        System.out.println(abhebestapel.cards);
-
-        distributeCards(spielermanagement, abhebestapel);
-        Ablegestapel ablegeStapel = new Ablegestapel();
-
-//        System.out.println(abhebestapel.cards);
-
-        ablegeStapel.addCard(abhebestapel.dealCard());
 
 
-        //System.out.println(ablegeStapel.ablegeStapelcards);
-
-        // firstCard(abhebestapel);
-
-      //  System.out.println(abhebestapel.cards.size());
-
-        System.out.println(spielermanagement.getSpielergruppe());
-
-     //   spielermanagement.reihenfolgeFestlegen(spielermanagement);
-
-        //spielerReihenfolgeAnzeigen(spielermanagement);
-
-        // spielerReihenfolge, Spieler um 1 weiter
-        // spielerReihenfolgeWeiter(aktuellerSpieler);
-
-        Spielverlauf spielverlauf = new Spielverlauf();
-        spielverlauf.rundeSpielen(ablegeStapel,abhebestapel,spielermanagement);
-
-
-    }
-
-    public static void distributeCards(Spielermanagement sm, CardDeck cd) {
-
-        for (Spieler spieler : sm.getSpielergruppe()) {
-            for (int j = 0; j < 7; j++) {
-                Card c = cd.dealCard();
-                spieler.karteHinzufügen(c);
-
-            }
-            System.out.println(spieler);
-        }
-    }//Methode ins Spielermanagement oder Carddeck verschieben
-
-    public static void firstCard(CardDeck abhebestapel) {
-
-        Card c1 = abhebestapel.dealCard();
-        System.out.println(c1);
-
-    }
 
 
 
@@ -84,8 +70,8 @@ public class Game {
 
         }
         */
+    }
 }
-
 
 
 
