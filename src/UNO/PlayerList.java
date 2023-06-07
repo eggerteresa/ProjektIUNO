@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import static UNO.GameMethods.setCurrentPlayerIndex;
+import static UNO.GameMethods.setCurrentPlayer;
+import static UNO.GameMethods.setTurn;
 
 public class PlayerList {
 
@@ -59,17 +60,17 @@ public class PlayerList {
     }
 
     public void setInitialPlayerTurn() {
-//        Collections.shuffle(playerList.getPlayerlist());
-//        int idsetter = 1;
-//        System.out.println("Setting each player's turn...:");
-//        for (Player spieler : playerList.getPlayerlist()) {
-//            spieler.setId(idsetter++);
-//            System.out.println("Player " + spieler.id + " : " + spieler.name);
-//        }
-        Random random = new Random();
-        int randomNumber;
-        randomNumber = random.nextInt(4 - 1);
-        setCurrentPlayerIndex(randomNumber);
+        Collections.shuffle(playerlist);
+        int counter = 1;
+
+        System.out.println("Setting each player's turn...:");
+        for (Player spieler : playerlist) {
+            System.out.println("Player " + (counter++) +" :" + spieler.getName() + spieler.cardsInHand);
+
+            setCurrentPlayer(playerlist.get(0));
+            setTurn(0);
+
+        }
+
     }
 }
-

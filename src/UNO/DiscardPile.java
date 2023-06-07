@@ -14,13 +14,13 @@ public class DiscardPile {
     public void firstCard(CardDeck cardDeck) {
 
         Card c1 = cardDeck.dealCard();
+        discardPile.add(c1);
         System.out.println("First card on the table is: "+ c1);
 
     }
 
     public Card showLastCard() {
-        System.out.println("Top Card on the table : ");
-        return discardPile.get(discardPile.size() - 1);
+        return discardPile.get(discardPile.size()-1);
     }
 
     public int getSizeofDiscardPile(){

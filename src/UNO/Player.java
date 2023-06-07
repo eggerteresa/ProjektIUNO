@@ -66,10 +66,7 @@ public class Player {
         cardsInHand.add(card);
     }
     //Methode Karten nehmen
-    public void playCard(Card card, DiscardPile discardDeck){
-     cardsInHand.remove(card);
-     discardDeck.addCard(card);
-    }
+
     public Card getCardByID(int eingabe) {
         Card result = null;
         for (Card c : cardsInHand) {

@@ -5,6 +5,14 @@ public class Game {
 
         GameMethods gameMethods = new GameMethods();
         gameMethods.prepareGame();
+        gameMethods.readPlayersInput();
+        gameMethods.updateState();
+
+        gameMethods.readPlayersInput();
+        gameMethods.updateState();
+
+        gameMethods.readPlayersInput();
+        gameMethods.updateState();
 
 
 
