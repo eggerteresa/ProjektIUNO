@@ -1,15 +1,45 @@
 package UNO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GameMethods {
     private CardDeck cardDeck = new CardDeck();
-    private DiscardPile discardPile = new DiscardPile();
+    private DiscardPile discardPile= new DiscardPile();
     private PlayerList playerList = new PlayerList();
-    private int roundCounter = 1;
+    private int currentPlayerIndex;
+
+    private Card playedCard;
 
     private Player currentPlayer;
     boolean clockwise;
+
+
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
+    public Card getPlayedCard() {
+        return playedCard;
+    }
+
+    public void setPlayedCard(Card playedCard) {
+        this.playedCard = playedCard;
+    }
+
+    public static void setCurrentPlayerIndex(int currentPlayerIndex) {
+       currentPlayerIndex = currentPlayerIndex;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+
 
     public void prepareGame() {
         cardDeck.createCards(Type.YELLOW);
@@ -22,20 +52,23 @@ public class GameMethods {
         System.out.println();
         cardDeck.distributeCards(playerList, cardDeck);
         System.out.println();
-        playerList.setInitialPlayerTurn(playerList);
-        setPlayers();
+        playerList.setInitialPlayerTurn();
         System.out.println();
         discardPile.firstCard(cardDeck);
 
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
+    public void readPlayersInput() {
+      playerPlaysCard();
+      isChosenCardValid();
+
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public void updateState(){
+        //print;
+        //nextplayer();
     }
+
 
 
     // Methode, um zu überprüfen, ob der jew. Spieler eine spielbare Karte in der Hand hat:
@@ -53,24 +86,17 @@ public class GameMethods {
     }
 
     //Methode, um zu überprüfen, ob die gespielte Karte überhaupt gespielt werden darf:
-    public boolean isChosenCardValid(Card playedCard) {
+    public boolean isChosenCardValid() {
+        Card card = getPlayedCard();
         Type typeOfCardOnTable = discardPile.showLastCard().getType();
         int numberOfCardOnTable = discardPile.showLastCard().getNumber();
 
-        if (typeOfCardOnTable.equals(playedCard.getType()) || numberOfCardOnTable == playedCard.getNumber()) {
+        if (typeOfCardOnTable.equals(card.getType()) || numberOfCardOnTable == card.getNumber()) {
             return true;
         }
         return false;
     }
 
-    //Ich weiß nicht, ob diese Methode wirklich gebraucht wird:
-    public void setPlayers() {
-        Player Player_1 = playerList.getPlayerByID(1);
-        Player Player_2 = playerList.getPlayerByID(2);
-        Player Player_3 = playerList.getPlayerByID(3);
-        Player Player_4 = playerList.getPlayerByID(4);
-
-    }
 
     //Methode, die überprüft, ob eine Reversekarte oben auf dem DiscardPile liegt
     public boolean IsReverseCard() {
@@ -91,57 +117,60 @@ public class GameMethods {
 
     //Wenn eine Karte im DiscardDeck liegt und noch keine Karte abgehoben wurde, ist Player 1 an der Reihe (= allererste Runde)
     //TODO boolean reverse oder aussetzen implementieren
-    public Player showCurrentPlayer() {
-        Player currentplayer = null;
-        Player Player_1 = playerList.getPlayerByID(1);
-        Player Player_2 = playerList.getPlayerByID(2);
-        Player Player_3 = playerList.getPlayerByID(3);
-        Player Player_4 = playerList.getPlayerByID(4);
-        if (discardPile.getSizeofDiscardPile() == 1 && cardDeck.cards.size() == 79) {
-            currentplayer = Player_1;
-        }
-        return currentplayer;
-    }
+
+//    public Player showCurrentPlayer() {
+//        Player currentPlayer = playerList.getPlayerlist().get(currentPlayerIndex);
+//        return currentPlayer;
+//    }
 
 
     public void playerPlaysCard() {
         Player currentPlayer = getCurrentPlayer();
-
         Scanner input = new Scanner(System.in);
-        System.out.println("Your move:");
-        int intCardID = input.nextInt();
+        Card cardToPlay = null;
+        if (hasValidCardToPlay(currentPlayer)) {
+            System.out.println(currentPlayer.getName() + " ,your move:");
+            int intCardID = input.nextInt();
 
-        Card cardToPlay = currentPlayer.getCardByID(intCardID);
+           cardToPlay = currentPlayer.getCardByID(intCardID);
 
-        if(isChosenCardValid(cardToPlay)) {
-            //removes card  from hand, add this card on the discardpile
+        } else {
+            System.out.println("You don't habe a valid card to play. Please draw a card.");
+            // drawACard();
+            if (hasValidCardToPlay(currentPlayer)){
+                // remove card from hand, add to card to discaod pile
+            }else {
+                //sorry but you still dont have a card to play this turn.
+            }
         }
-        else{
-            System.out.println();
+
+        if(cardToPlay != null) {
+            setPlayedCard(cardToPlay);
         }
+
     }
+
 
     public void nextTurn() {
         Player currentPlayer = getCurrentPlayer();
         Card topCard = discardPile.showLastCard();
 
-        if(isPassCard()) {
-            isReverse();
+        if (isPassCard()) {
+            //         isReverse();
         }
     }
 
-    public void isReverse(){
-        int temp = getCurrentPlayer().getId();
-        int next;
-
-        if(temp == 4 && clockwise){
-            next = 3;
-            setClockwise(false);
-        } else if (temp == 1 && clockwise) {
-            next
-        }
-    }
-
+//    public void isReverse(){
+//        int temp = getCurrentPlayer().getId();
+//        int next;
+//
+//        if(temp == 4 && clockwise){
+//            next = 3;
+//            setClockwise(false);
+//        } else if (temp == 1 && clockwise) {
+//            next
+//        }
+//    }
 
 
 }

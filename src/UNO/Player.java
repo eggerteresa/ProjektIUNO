@@ -7,6 +7,7 @@ public class Player {
     protected String name;
     protected int id; // wirklich notwendig?
     protected int points;
+
     protected static int counter = 0;
     protected ArrayList<Card> cardsInHand = new ArrayList<>();
 
@@ -15,6 +16,7 @@ public class Player {
         this.id = ++counter;
         this.points = 0;
         this.cardsInHand = new ArrayList<>();
+
     }
 
 
@@ -55,13 +57,6 @@ public class Player {
     public ArrayList<Card> getCardsInHand() {
         return cardsInHand;
     }
-
-//    public ArrayList<Spieler> showCardsinHand(int id){
-//        ArrayList<Spieler> result = new ArrayList<>();
-//      //  for(Spieler spieler : ){
-//            if()
-//        }
-//    }
 
     public void setCardsInHand(ArrayList<Card> cardsInHand) {
         this.cardsInHand = cardsInHand;

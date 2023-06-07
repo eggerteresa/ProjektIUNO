@@ -2,7 +2,10 @@ package UNO;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
+
+import static UNO.GameMethods.setCurrentPlayerIndex;
 
 public class PlayerList {
 
@@ -13,9 +16,6 @@ public class PlayerList {
         return playerlist;
     }
 
-//    public Player getPlayerByIndex(int index) {
-//        return playerlist.get(index - 1);
-//    }
 
     public Player getPlayerByID(int id) {
         Player result = null;
@@ -44,8 +44,8 @@ public class PlayerList {
     }
 
 
-    public void addPlayer(){
-        for(int i = 0; i < 4; i++){
+    public void addPlayer() {
+        for (int i = 0; i < 4; i++) {
             Player player = new Player(setPlayerNames());
             playerlist.add(player);
         }
@@ -58,16 +58,18 @@ public class PlayerList {
         return name;
     }
 
-        public void setInitialPlayerTurn(PlayerList playerList) {
-        Collections.shuffle(playerList.getPlayerlist());
-        int idsetter = 1;
-        System.out.println("Setting each player's turn...:");
-        for (Player spieler : playerList.getPlayerlist()) {
-            spieler.setId(idsetter++);
-            System.out.println("Player " + spieler.id + " : " + spieler.name);
-        }
+    public void setInitialPlayerTurn() {
+//        Collections.shuffle(playerList.getPlayerlist());
+//        int idsetter = 1;
+//        System.out.println("Setting each player's turn...:");
+//        for (Player spieler : playerList.getPlayerlist()) {
+//            spieler.setId(idsetter++);
+//            System.out.println("Player " + spieler.id + " : " + spieler.name);
+//        }
+        Random random = new Random();
+        int randomNumber;
+        randomNumber = random.nextInt(4 - 1);
+        setCurrentPlayerIndex(randomNumber);
     }
-
-
 }
 
