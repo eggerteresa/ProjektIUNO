@@ -12,7 +12,7 @@ public class GameMethods {
 
     private static Player currentPlayer;
     boolean isClockwise;
-    int turn = 0;
+    int turn;
 
     public int getTurn() {
         return turn;
@@ -139,7 +139,7 @@ public class GameMethods {
         }
 
 
-    public int isPassCard() { //This method is to decide who has the next turn when the card "<->" is played
+    public int isPassCard() { //This method is to decide who has the next turn when the passcard  is played
         int indexOfTheCurrentPlayer = getTurn(); //index of the current player
 
         if (indexOfTheCurrentPlayer == 1) {
@@ -166,7 +166,7 @@ public class GameMethods {
         return indexOfTheCurrentPlayer;
     }
 
-    public int isRegularCard() { //This method is to decide who has the next turn when the card "<->" is played
+    public int isRegularCard() { //This method is to decide who has the next turn when a normal card is played
         int indexOfTheCurrentPlayer = getTurn(); //index of the current player
 
         if (indexOfTheCurrentPlayer == 1) {
@@ -225,7 +225,7 @@ public class GameMethods {
             }
 
         } else {
-            System.out.println("You don't habe a valid card to play. Please draw a card.");
+            System.out.println("Sorry, " + currentPlayer.getName()+ ", you don't habe a valid card to play. Please draw a card.");
             //current player nimmt eine Karte vom Deck und fügt sie seinen Karten hinzu
             currentPlayer.cardsInHand.add(cardDeck.dealCard());
             System.out.println(currentPlayer.cardsInHand);
@@ -242,7 +242,7 @@ public class GameMethods {
 
 
             } else {
-                System.out.println("Sorry, you don't have a card to play out this turn.");
+                System.out.println("Sorry, " + currentPlayer.getName() + " you don't have a card to play out this turn.");
             }
         }
 
@@ -263,13 +263,13 @@ public class GameMethods {
         Player currentPlayer = getCurrentPlayer();
         Card topCard = discardPile.showLastCard();
 
-        if (topCard.equals(Type.YELLOW_REVERSE) || topCard.equals(Type.BLUE_REVERSE)
-                || topCard.equals(Type.RED_REVERSE) || topCard.equals(Type.GREEN_REVERSE))  {
+        if (topCard.getType().equals(Type.YELLOW_REVERSE) || topCard.getType().equals(Type.BLUE_REVERSE)
+                || topCard.getType().equals(Type.RED_REVERSE) || topCard.getType().equals(Type.GREEN_REVERSE))  {
 
             setCurrentPlayer(playerList.getPlayerlist().get(isReverseCard()));
         }
-        else if (topCard.equals(Type.YELLOW_PASS) || topCard.equals(Type.BLUE_PASS)
-                || topCard.equals(Type.RED_PASS) || topCard.equals(Type.GREEN_PASS)) {
+        else if (topCard.getType().equals(Type.YELLOW_PASS) || topCard.getType().equals(Type.BLUE_PASS)
+                || topCard.getType().equals(Type.RED_PASS) || topCard.getType().equals(Type.GREEN_PASS)) {
 
             setCurrentPlayer(playerList.getPlayerlist().get(isPassCard()));
         }
