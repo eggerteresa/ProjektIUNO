@@ -68,7 +68,6 @@ public class GameMethods {
 
 
     // Methode, um zu überprüfen, ob der jew. Spieler eine spielbare Karte in der Hand hat:
-// TODO falls false, wird Spieler aufgefordert, eine Karte zu ziehen
 
     public boolean hasValidCardToPlay() {
         boolean isValid = false;

@@ -12,7 +12,7 @@ public class DiscardPile {
     }
 
     public void firstCard(CardDeck cardDeck) {
-
+        // todo: Regeln implementieren, falls erste Karte eine plus4, colorchange, reverse, oder pass card ist
         Card c1 = cardDeck.dealCard();
         discardPile.add(c1);
         System.out.println("First card on the table is: "+ c1);
