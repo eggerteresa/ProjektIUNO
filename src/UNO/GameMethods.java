@@ -52,7 +52,7 @@ public class GameMethods {
         System.out.println();
         playerList.setInitialPlayerTurn();
         System.out.println();
-        discardPile.firstCard(cardDeck);
+        firstCard();
 
     }
 
@@ -66,21 +66,57 @@ public class GameMethods {
         System.out.println(discardPile.showLastCard());
     }
 
+    public void firstCard() {
+        // todo: Regeln implementieren, falls erste Karte eine plus4, colorchange, reverse, oder pass card ist
+        //Wenn eine Farbenwahl Karte zu Beginn des Spiels gezogen wird, entscheidet der Spieler zur Linken
+        //des Gebers, welche Farbe als nächstes gelegt werden soll --> geht eigentlich nicht, also entscheidet Spieler,
+        //der dran ist, oder?
+        Card firstCard = cardDeck.dealCard();
+        discardPile.addCard(firstCard);
+        if (firstCard.getType().equals(Type.PLUS_4)){
+            cardDeck.add(firstCard);
+            Card newFirstCard = cardDeck.dealCard();
+            System.out.println("First card on the table is: "+ newFirstCard);
+
+        }
+        if (firstCard.getType().equals(Type.RED_PASS) || firstCard.getType().equals(Type.GREEN_PASS) ||
+                firstCard.getType().equals(Type.BLUE_PASS) || firstCard.getType().equals(Type.YELLOW_PASS)){
+            System.out.println("Player 2 will start the game.");
+            nextTurn();
+
+        }
+        System.out.println("First card on the table is: "+ firstCard);
+
+    }
+
 
     // Methode, um zu überprüfen, ob der jew. Spieler eine spielbare Karte in der Hand hat:
-
+// TODO verfeinern, wenn zb. reverse card oben auf liegt
     public boolean hasValidCardToPlay() {
         boolean isValid = false;
         Player p = getCurrentPlayer();
         Type typeOfCardOnTable = discardPile.showLastCard().getType();
         int numberOfCardOnTable = discardPile.showLastCard().getNumber();
         for (Card card : p.cardsInHand) {
+            if(typeOfCardOnTable.equals(Type.GREEN_REVERSE) && card.getType().equals(Type.GREEN)){
+                isValid =true;
+            }
+            if(typeOfCardOnTable.equals(Type.RED_REVERSE) && card.getType().equals(Type.RED)){
+                isValid = true;
+            }
+            if(typeOfCardOnTable.equals(Type.BLUE_REVERSE) && card.getType().equals(Type.BLUE)) {
+                isValid = true;
+            }
+            if(typeOfCardOnTable.equals(Type.YELLOW_REVERSE) && card.getType().equals(Type.YELLOW)){
+                isValid =true;
+            }
             if (card.getType().equals(typeOfCardOnTable) || card.getNumber() == numberOfCardOnTable
                     || card.getType().equals(Type.COLORCHANGE) || card.getType().equals(Type.PLUS_4)) {
                 isValid = true;
                 break;
             } else {
                 isValid = false;
+
             }
         }
         return isValid;
@@ -98,7 +134,7 @@ public class GameMethods {
             chosenCardValid = true;
         } else {
             chosenCardValid = false;
-            System.out.println("Sorry, this is not a valid move. Now you have to draw a penalty card, ha!");
+            System.out.println("Sorry, this is not a valid move. Now you have to draw a penalty card!");
         }
         return chosenCardValid;
 

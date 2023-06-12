@@ -72,6 +72,10 @@ public class CardDeck {
         return cardDeck.size();
     }
 
+    //Methode, um Karte wieder zum cardDeck hinzuzufügen (wenn plus4 als erstes aufgedeckt wird)
+    public void add(Card card){
+        cardDeck.add(card);
+    }
 }
 
 
