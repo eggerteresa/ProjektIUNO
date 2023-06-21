@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import static UNO.GameMethods.setCurrentPlayer;
-import static UNO.GameMethods.setTurn;
+
 
 public class PlayerList {
 
@@ -58,19 +58,11 @@ public class PlayerList {
         String name = scanner.next();
         return name;
     }
+// random zahl zw 0 und 4
 
-    public void setInitialPlayerTurn() {
-        Collections.shuffle(playerlist);
-        int counter = 1;
-
-        System.out.println("Setting each player's turn...:");
-        for (Player spieler : playerlist) {
-            System.out.println("Player " + (counter++) +" :" + spieler.getName() + spieler.cardsInHand);
-
-            setCurrentPlayer(playerlist.get(0));
-            setTurn(0);
-
+    public void showId (){
+        for(Player player : playerlist){
+            System.out.println(player.name + player.id);
         }
-
     }
 }
