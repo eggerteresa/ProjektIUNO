@@ -1,52 +1,56 @@
 package UNO;
 
-import UNO.Type;
-
 public class Card {
     private Type type;
     private int number;
 
     private int value;
+    private static int counter = 0;
 
-    private String name;
+    private int CardID;
 
-
-    public Card(Type type, String name) {
-        this.type = type;
-        this.name = name;
+    public int getCardID() {
+        return CardID;
     }
 
     public Card(Type type, int number, int value) {
         this.type = type;
         this.number = number;
         this.value = value;
+        this.CardID = counter++;
     }
 
-    public Card(Type type, int number) {
+    public Card(Type type, int value) {
         this.type = type;
-        this.number = number;
+        this.value = value;
+        this.CardID = counter++;
     }
 
     @Override
     public String toString() {
-        if (name == null) {
-            return "UNO.Card{" +
-                    "type=" + type +
+
+        if (getType().equals(Type.BLUE) || getType().equals(Type.GREEN) || getType().equals(Type.YELLOW) || getType().equals(Type.RED)) {
+
+            return "Card {" +
+                    "type=" + type  +
                     ", number=" + number +
-                    '\'' +
-                    '}';
+                    ", ID=" + CardID + " }" +
+                    "\n";
+
         } else {
-            return "UNO.Card{" + "type=" + type + ", name='" + name +
-                    '\'' +
-                    '}';
+
+            return "Card {" +
+                    "type=" + type +
+                    ", ID=" + CardID + " } " +
+                    "\n";
         }
     }
 
-    public Type getColor() {
+    public Type getType() {
         return type;
     }
 
-    public void setColor(Type type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -65,5 +69,6 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
+
 //
 }

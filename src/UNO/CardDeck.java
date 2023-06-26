@@ -4,121 +4,79 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardDeck {
-    //4 For schleifen, um Karten zu erzeugen, für Spieler ein Interface, eine Klasse für Ablegestapel,
-    //eine Klassse für Abhebestapel
-    // public void addcards (UNO.Card c) {
-//       cards.add(c);
-//    }
-    ArrayList<Card> cards = new ArrayList<>();
 
-    public void createredcards(Type RED) {
-        int number = 0;
+    ArrayList<Card> cardDeck = new ArrayList<>();
+
+    public void createCards(Type type) {
         for (int i = 0; i < 10; i++) {
-            cards.add(new Card(RED, number++));
+            if (type == Type.YELLOW || type == Type.BLUE || type == Type.GREEN || type == Type.RED) {
+                cardDeck.add(new Card(type, i, i));
+            }
         }
-        number = 1;
-        for (int i = 0; i < 9; i++) {
-            cards.add(new Card(RED, number++));
+
+        for (int i = 1; i < 10; i++) {
+            if (type == Type.YELLOW || type == Type.BLUE || type == Type.GREEN || type == Type.RED) {
+                cardDeck.add(new Card(type, i, i));
+            }
+
         }
     }
 
-    public void creategreencards(Type GREEN) {
-        int number = 0;
-        for (int i = 0; i < 10; i++) {
-            cards.add(new Card(GREEN, number++));
-        }
-        number = 1;
-        for (int i = 0; i < 9; i++) {
-            cards.add(new Card(GREEN, number++));
-        }
-    }
+    public void createActionCards() {
 
-    public void createbluecards(Type BLUE) {
-        int number = 0;
-        for (int i = 0; i < 10; i++) {
-            cards.add(new Card(BLUE, number++));
-        }
-        number = 1;
-        for (int i = 0; i < 9; i++) {
-            cards.add(new Card(BLUE, number++));
-        }
-    }
-
-    public void createyellow(Type YELLOW) {
-        int number = 0;
-        for (int i = 0; i < 10; i++) {
-            cards.add(new Card(YELLOW, number++));
-        }
-        number = 1;
-        for (int i = 0; i < 9; i++) {
-            cards.add(new Card(YELLOW, number++));
-        }
-    }
-
-    public void createActionCards(Type type) {
         for (int i = 0; i < 4; i++) {
-            cards.add(new Actioncard(Type.BLACK, "Zieh 4 "));
-        }
-        for (int i = 0; i < 4; i++) {
-            cards.add(new Actioncard(Type.BLACK, "Farbwahl"));
+            cardDeck.add(new Card(Type.PLUS_4, 50));
+            cardDeck.add(new Card(Type.COLORCHANGE, 50));
         }
 
         for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.GREEN, "Zieh 2"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.BLUE, "Zieh 2"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.YELLOW, "Zieh 2"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.RED, "Zieh 2"));
-        }
+            cardDeck.add(new Card(Type.GREEN_PLUS2, 20));
+            cardDeck.add(new Card(Type.GREEN_PASS, 20));
+            cardDeck.add(new Card(Type.GREEN_REVERSE, 20));
+            cardDeck.add(new Card(Type.BLUE_PASS, 20));
+            cardDeck.add(new Card(Type.BLUE_PLUS2, 20));
+            cardDeck.add(new Card(Type.BLUE_REVERSE, 20));
+            cardDeck.add(new Card(Type.RED_PASS, 20));
+            cardDeck.add(new Card(Type.RED_PLUS2, 20));
+            cardDeck.add(new Card(Type.RED_REVERSE, 20));
+            cardDeck.add(new Card(Type.YELLOW_PASS, 20));
+            cardDeck.add(new Card(Type.YELLOW_PLUS2, 20));
+            cardDeck.add(new Card(Type.YELLOW_REVERSE, 20));
 
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.GREEN, "Retour"));
         }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.BLUE, "Retour"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.YELLOW, "Retour"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.RED, "Retour"));
-        }
-
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.GREEN, "Pass"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.BLUE, "Pass"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.YELLOW, "Pass"));
-        }
-        for (int i = 0; i < 2; i++) {
-            cards.add(new Actioncard(Type.RED, "Pass"));
-        }
-
-
-    }
-    public void shuffleCards(){
-        Collections.shuffle(cards);
-        System.out.println("Karten sind gemischt, c'est parti!");
     }
 
-// Method Karten abziehen
-    public Card dealCard(){
-      return cards.remove(0);
+    public void shuffleCards() {
+        Collections.shuffle(cardDeck);
+        System.out.println("Cards are shuffled!");
+    }
+
+    // Method Karten abziehen
+    public Card dealCard() {
+        return cardDeck.remove(0);
+    }
+
+    public void distributeCards(PlayerList playerList, CardDeck cardDeck) {
+
+        for (Player player : playerList.getPlayerlist()) {
+            for (int j = 0; j < 7; j++) {
+                Card c = cardDeck.dealCard();
+                player.takeCard(c);
+
+            }
+            System.out.println(player);
+        }
+
+    }
+    public int getSizeofCardDeck(){
+        return cardDeck.size();
+    }
+
+    //Methode, um Karte wieder zum cardDeck hinzuzufügen (wenn plus4 als erstes aufgedeckt wird)
+    public void add(Card card){
+        cardDeck.add(card);
     }
 }
-
-
-
-
-
 
 
 
