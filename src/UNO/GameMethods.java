@@ -70,14 +70,15 @@ public class GameMethods {
         nextTurn();
         System.out.println(discardPile.showLastCard());
     }
-// wird nur am Anfang des Spiels festgelegt
+
+    // wird nur am Anfang des Spiels festgelegt
     public void firstPlayer() {
         System.out.println("Setting each player's turn...:");
         Random rand = new Random();
         int initialPlayerIndex = rand.nextInt(3);
         setCurrentPlayerIndex(initialPlayerIndex);
         setCurrentPlayer(getPlayerByIndex(initialPlayerIndex));
-        System.out.println(getPlayerByIndex(currentPlayerIndex).getName()+ ",you start the game. ");
+        System.out.println(getPlayerByIndex(currentPlayerIndex).getName() + ",you start the game. ");
     }
 
 
@@ -112,7 +113,30 @@ public class GameMethods {
         Player currentPlayer = getCurrentPlayer();
         Type typeOfCardOnTable = discardPile.showLastCard().getType();
         int numberOfCardOnTable = discardPile.showLastCard().getNumber();
+
+        //Farbe mit FirstLetter vergleichen
+        char firstLetterCardOnTheTable = typeOfCardOnTable.name().charAt(0);
+
+        // PassCard mit LastLetter vergleichen
+        boolean lastLetterCardOnTheTable = typeOfCardOnTable.name().endsWith("PASS");
+
+        //Plus2Card mit LastSign verleichen
+        boolean lastSignCardOnTheTable = typeOfCardOnTable.name().endsWith("2");
+
         for (Card card : currentPlayer.cardsInHand) {
+            // Farbe wird hier vergliechen
+            if(firstLetterCardOnTheTable == (char) card.getType().name().charAt(0)){
+                isValid = true;
+            }
+            //Check if passCard
+            if(lastLetterCardOnTheTable == true && (card.getType().name().endsWith("PASS") == true)){
+                isValid = true;
+            }
+            //Check if +2 Card
+            if(lastLetterCardOnTheTable == true && (card.getType().name().endsWith("2") == true)){
+                isValid = true;
+            }
+
             if (typeOfCardOnTable.equals(Type.GREEN_REVERSE) && card.getType().equals(Type.GREEN)) {
                 isValid = true;
             }
@@ -139,12 +163,20 @@ public class GameMethods {
 
     //Methode, um zu überprüfen, ob die gespielte Karte überhaupt gespielt werden darf:
     public boolean isChosenCardValid() {
-        boolean chosenCardValid = false;
+        boolean chosenCardValid;
         Card card = getPlayedCard();
         Type typeOfCardOnTable = discardPile.showLastCard().getType();
         int numberOfCardOnTable = discardPile.showLastCard().getNumber();
-
-        if (typeOfCardOnTable.equals(card.getType()) || numberOfCardOnTable == card.getNumber()
+        if (isSameColor()) {
+            return true;
+        }
+        if (PassCardCheck()) {
+            return true;
+        }
+        if (plus2Check()) {
+            return true;
+        }
+        if (numberOfCardOnTable == card.getNumber()
                 || card.getType().equals(Type.PLUS_4) || card.getType().equals(Type.COLORCHANGE)) {
             chosenCardValid = true;
         } else {
@@ -261,6 +293,12 @@ public class GameMethods {
         Player currentPlayer = getCurrentPlayer();
         Scanner input = new Scanner(System.in);
         Card cardToPlay = null;
+
+        //TODO muss noch ergänzt werden
+        if(discardPile.getDiscardPile().size() ==1){
+            firstCard();
+
+        }
         if (hasValidCardToPlay()) {
             System.out.println(currentPlayer.cardsInHand);
             System.out.println(currentPlayer.getName() + " ,your move! Type in the ID of the card you would like to play");
@@ -328,7 +366,42 @@ public class GameMethods {
         setCurrentPlayer(getPlayerByIndex(currentPlayerIndex));
     }
 
+    public boolean isSameColor() {
+        Card c1 = getPlayedCard();
+        Card c2 = discardPile.showLastCard();
+        boolean samecolor = false;
+        char firstletterCard1 = c1.getType().name().charAt(0);
+        char firstletterCard2 = c2.getType().name().charAt(0);
+        if (firstletterCard1 == firstletterCard2) {
+            samecolor = true;
+        }
+        return samecolor;
+    }
 
+    public boolean PassCardCheck() {
+        Card c1 = getPlayedCard();
+        Card c2 = discardPile.showLastCard();
+        boolean botharepassCards = false;
+        boolean lastletterCard1 = c1.getType().name().endsWith("PASS");
+        boolean lastletterCard2 = c2.getType().name().endsWith("PASS");
+        if (lastletterCard1 == true && lastletterCard2 == true) {
+            botharepassCards = true;
+        }
+        return botharepassCards;
+    }
+
+    public boolean plus2Check() {
+        Card c1 = getPlayedCard();
+        Card c2 = discardPile.showLastCard();
+        boolean botharepassCards = false;
+        boolean lastletterCard1 = c1.getType().name().endsWith("2");
+        boolean lastletterCard2 = c2.getType().name().endsWith("2");
+        if (lastletterCard1 == true && lastletterCard2 == true) {
+            botharepassCards = true;
+        }
+        return botharepassCards;
+    }
+}
 /*
     public void nextTurn() {
         Player currentPlayer;
@@ -349,4 +422,3 @@ public class GameMethods {
         setCurrentPlayer(currentPlayer);
     }
 */
-}
