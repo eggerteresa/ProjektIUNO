@@ -3,10 +3,14 @@ package UNO;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static UNO.GameMethods.*;
+import static UNO.GameMethods.acceptPlayersInput;
+
 public class App {
     private final Scanner input;
     private final PrintStream output;
     private boolean exit = false;
+
 
     GameMethods gameMethods = new GameMethods();
 
@@ -36,13 +40,14 @@ public class App {
     }
 
     private void updateState() {
+        gameMethods.isChosenCardValid();
+        acceptPlayersInput();
         gameMethods.nextTurn();
-        System.out.println(gameMethods.getDiscardPile().showLastCard());
     }
 
 
     private void printState() {
-
+        gameMethods.printTopCardOfDiscardPile();
     }
 
 }

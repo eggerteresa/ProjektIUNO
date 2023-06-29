@@ -22,12 +22,10 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", points=" + points + "\n"+
-                ", kartenprospieler=" + "\n" + cardsInHand +
-                '}';
+        return "Player Name: " + name + '\t' +
+                "ID: " + id +"\t"+
+                "Points: " + points + "\n"+
+                "CARDS IN HAND:";
     }
 
     public String getName() {
@@ -67,6 +65,7 @@ public class Player {
     }
     //Methode Karten nehmen
 
+
     public Card getCardByID(int eingabe) {
         Card result = null;
         for (Card c : cardsInHand) {
@@ -78,11 +77,13 @@ public class Player {
     }
 
     public Card lastCardHand() {
-
         return cardsInHand.get(cardsInHand.size() - 1);
     }
 
-
-
+    public void printCardsInHand() {
+        for (Card card : cardsInHand) {
+            System.out.println(card);
+        }
+    }
 
 }

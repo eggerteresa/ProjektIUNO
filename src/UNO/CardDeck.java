@@ -65,6 +65,8 @@ public class CardDeck {
 
             }
             System.out.println(player);
+            player.printCardsInHand();
+            System.out.println();
         }
 
     }
@@ -75,6 +77,10 @@ public class CardDeck {
     //Methode, um Karte wieder zum cardDeck hinzuzufügen (wenn plus4 als erstes aufgedeckt wird)
     public void add(Card card){
         cardDeck.add(card);
+    }
+
+    public void remove(Card card) {
+        cardDeck.remove(card);
     }
 }
 
