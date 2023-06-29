@@ -31,18 +31,15 @@ public class Card {
 
         if (getType().equals(Type.BLUE) || getType().equals(Type.GREEN) || getType().equals(Type.YELLOW) || getType().equals(Type.RED)) {
 
-            return "Card {" +
-                    "type=" + type  +
-                    ", number=" + number +
-                    ", ID=" + CardID + " }" +
-                    "\n";
+            return "ID: " + CardID +  "\t" +
+                    "Type: " + type  +"\t"+
+                    "Number: " + number;
 
         } else {
 
-            return "Card {" +
-                    "type=" + type +
-                    ", ID=" + CardID + " } " +
-                    "\n";
+            return "ID: " + CardID + "\t" +
+                    "Type: " + type;
+
         }
     }
 
@@ -70,5 +67,4 @@ public class Card {
         this.value = value;
     }
 
-//
 }
